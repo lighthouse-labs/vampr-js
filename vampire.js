@@ -33,23 +33,22 @@ class Vampire {
   // Returns true if this vampire is more senior than the other vampire. (Who is closer to the original vampire)
   isMoreSeniorThan(vampire) {
     return (this.numberOfVampiresFromOriginal < vampire.numberOfVampiresFromOriginal);
-    
   }
 
   /** Tree traversal methods **/
 
   // Returns the vampire object with that name, or null if no vampire exists with that name
   vampireWithName(name) {
-    
     if (this.name === name) {
       return this;
     }
-    this.offspring.forEach(child => {
-      child.vampireWithName(name);
-    })
+    for (let child of this.offspring) {
+      let vampire = child.vampireWithName(name);
+      if (vampire) {
+        return vampire;
+      }
+    }
     return null;
-
-
   }
 
   // Returns the total number of vampires that exist

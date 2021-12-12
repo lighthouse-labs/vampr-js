@@ -51,19 +51,42 @@ class Vampire {
 
   // Returns the vampire object with that name, or null if no vampire exists with that name
   vampireWithName(name) {
-    
+    if (this.name === name) {
+      return this;
+    }
+
+    for (let vampYute of this.offspring) {
+      let vampire = vampYute.vampireWithName(name);
+      if (vampire) {
+        return vampire;
+      }
+    }
+
+    return null;
   }
 
-  // Returns the total number of vampires that exist
+  // // Returns the total number of vampires that exist
   get totalDescendents() {
-    
+    let count = 0;
+    for (let vampYute of this.offspring) {
+      count += vampYute.totalDescendents + 1;
+    }
+    return count;
   }
 
-  // Returns an array of all the vampires that were converted after 1980
+  // // Returns an array of all the vampires that were converted after 1980
   get allMillennialVampires() {
-    
-  }
+    let vampires = [];
+    if (this.yearConverted > 1980) {
+      vampires.push(this);
+    }
 
+    for (let vampYute of this.offspring) {
+      vampires = vampires.concat(vampYute.allMillennialVampires);
+    }
+    
+    return vampires;
+  }
   /** Stretch **/
 
   // Returns the closest common ancestor of two vampires.

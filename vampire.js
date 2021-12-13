@@ -35,13 +35,7 @@ class Vampire {
 
   // Returns true if this vampire is more senior than the other vampire. (Who is closer to the original vampire)
   isMoreSeniorThan(vampire) {
-    levelsThis = this.numberOfVampiresFromOriginal();
-    levelsOther = vampire.numberOfVampiresFromOriginal();
-    if (levelsThis > levelsOther) {
-        return false;
-    } else {
-        return true;
-    }
+    return (this.numberOfVampiresFromOriginal < vampire.numberOfVampiresFromOriginal);
 
   }
 
@@ -57,16 +51,6 @@ class Vampire {
   }
 }
 
-const sarah = new Vampire("Sarah", 1999);
-const Elgort    = new Vampire("Ansel", 1800);
-// const arvinder = new Vampire("Arvinder", "Chief Design Officer", 1000000);
-// const angela   = new Vampire("Angela", "VP Retail", 1000000);
-// const phil     = new Vampire("Phil", "VP Marketing", 1000000);
-
-sarah.addOffspring(Elgort);
-// ada.addSubordinate(arvinder);
-// ada.addSubordinate(angela);
-// ada.addSubordinate(phil);
 
 module.exports = Vampire;
 
